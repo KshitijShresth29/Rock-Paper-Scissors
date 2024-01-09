@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Paper Scissors Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    img {
+      width: 100px;
+      margin: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Rock Paper Scissors Game</h1>
+  <img src="rock.png" alt="Rock" id="rock" onclick="playGame('rock')">
+  <img src="paper.png" alt="Paper" id="paper" onclick="playGame('paper')">
+  <img src="scissors.png" alt="Scissors" id="scissors" onclick="playGame('scissors')">
+  <button onclick="playGame()">Play</button>
+  <p id="result"></p>
+  <script>
+    function playGame(playerChoice) {
+      const choices = ['rock', 'paper', 'scissors'];
+      const randomIndex = Math.floor(Math.random() * 3);
+      const computerChoice = choices[randomIndex];
+      let resultMessage = '';
+
+      if (playerChoice) {
+        resultMessage = `You chose ${playerChoice}. Computer chose ${computerChoice}. `;
+      }
+
+      if (playerChoice === computerChoice) {
+        resultMessage += 'It\'s a tie!';
+      } else if (
+        (playerChoice === 'rock' && computerChoice === 'scissors') ||
+        (playerChoice === 'paper' && computerChoice === 'rock') ||
+        (playerChoice === 'scissors' && computerChoice === 'paper')
+      ) {
+        resultMessage += 'You win!';
+      } else {
+        resultMessage += 'You lose!';
+      }
+
+      document.getElementById('result').textContent = resultMessage;
+    }
+  </script>
+</body>
+</html>
